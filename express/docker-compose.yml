@@ -1,0 +1,70 @@
+version: '3'
+
+networks:
+  NBP:
+    driver: bridge
+
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - redis
+      - postgres
+      - neo4j
+    networks:
+      - NBP
+    environment: 
+      DATABASE_URL: postgres://user:password@postgres:5432/nbp
+      PORT: 3000
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --include /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - NBP
+
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    networks:
+      - NBP
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: nbp
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  neo4j:
+    image: neo4j
+    restart: always
+    ports:
+      - '7474:7474'
+      - '7687:7687'
+    networks:
+      - NBP
+    environment:
+      NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
+      NEO4J_AUTH: <neo4j>/<mysecretpassword>
+    volumes:
+      - ./conf:/conf
+      - ./data:/data
+      - ./import:/import
+      - ./logs:/logs
+      - ./plugins:/plugins
+
+volumes:
+  pgdata:
+    external: true
+  neo4j:
+    external: true

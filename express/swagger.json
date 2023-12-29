@@ -1,0 +1,1302 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "NBP project",
+      "description": "NBP project using redis and neo4j",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3001",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Messages",
+        "description": "API for type in the system"
+      },
+      {
+        "name": "Chat",
+        "description": "API for type in the system"
+      },
+      {
+        "name": "Type",
+        "description": "API for type in the system"
+      },
+      {
+        "name": "Breed",
+        "description": "API for type in the system"
+      },
+      {
+        "name": "User",
+        "description": "API for type in the system"
+      },
+      {
+        "name": "Post",
+        "description": "API for type in the system"
+      },
+      {
+        "name": "LocationCity",
+        "description": "API for type in the system"
+      },
+      {
+        "name": "LocationCountry",
+        "description": "API for type in the system"
+      }
+    ],
+    "paths": {
+      "/getChat/{idUser1}/{idUser2}": {
+        "parameters": [
+          {
+            "name": "idUser1",
+            "in": "path",
+            "required": true,
+            "description": "ID of type that we want to find",
+            "type": "string"
+          },
+          {
+            "name": "idUser2",
+            "in": "path",
+            "required": true,
+            "description": "ID of type that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": ["Chat"],
+          "summary": "Get chat",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },  
+      "/getChatForUser/{idUser1}": {
+        "parameters": [
+          {
+            "name": "idUser1",
+            "in": "path",
+            "required": true,
+            "description": "ID of type that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": ["Chat"],
+          "summary": "Get chat",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },  
+      "/addChat": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Chat"
+            }
+          }
+        ],
+        "post": {
+          "summary": "Create type with given ID",
+          "tags": [
+            "Chat"
+          ],
+          "responses": {
+            "200": {
+              "description": "Type is updated"
+            }
+          }
+        }
+    },
+    "/putNamePhotoChat/{id}/{name}/{photo}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "photo",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Create type with given ID",
+        "tags": [
+          "Chat"
+        ],
+        "responses": {
+          "200": {
+            "description": "Type is updated"
+          }
+        }
+      }
+  },
+    "/getMessages/{idChat}": {
+      "parameters": [
+        {
+          "name": "idChat",
+          "in": "path",
+          "required": true,
+          "description": "ID of type that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Chat"],
+        "summary": "Get chat",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },  
+    "/addMessage": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Message"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Create type with given ID",
+        "tags": [
+          "Chat"
+        ],
+        "responses": {
+          "200": {
+            "description": "Type is updated"
+          }
+        }
+      }
+  },
+        "/getTypes": {
+          "get": {
+            "tags": ["Type"],
+            "summary": "Get all types in system",
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          }
+        },
+        "/getType/{id}": {
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID of type that we want to find",
+              "type": "integer"
+            }
+          ],
+          "get": {
+            "tags": ["Type"],
+            "summary": "Get all types in system",
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          }
+        },
+      "/postType/{name}": {
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "post": {
+          "summary": "Create type with given ID",
+          "tags": [
+            "Type"
+          ],
+          "responses": {
+            "200": {
+              "description": "Type is updated"
+            }
+          }
+        }
+    },
+    "/postType": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Type"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Create type with given ID",
+        "tags": [
+          "Type"
+        ],
+        "responses": {
+          "200": {
+            "description": "Type is updated"
+          }
+        }
+      }
+  },
+  "/putType/{id}": {
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "integer"
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "required": true,
+        "schema": {
+          "$ref": "#/definitions/Type"
+        }
+      }
+    ],
+    "put": {
+      "summary": "Update type with given ID",
+      "tags": [
+        "Type"
+      ],
+      "responses": {
+        "200": {
+          "description": "Type is updated"
+        }
+      }
+    }
+},
+  "/deleteType/{id}": {
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "ID of type that we want to find",
+        "type": "integer"
+      }
+    ],
+    "delete": {
+      "summary": "Delete type with given ID",
+      "tags": [
+        "Type"
+      ],
+      "responses": {
+        "200": {
+          "description": "Type is deleted"
+          }
+        }
+      }
+  },
+      "/getBreed": {
+        "get": {
+          "tags": ["Breed"],
+          "summary": "Get all breed in system",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/getTypeBreeds/{idType}": {
+        "parameters": [
+          {
+            "name": "idType",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags": ["Breed"],
+          "summary": "Get all breeds of type",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/getBreedType/{idBreed}": {
+        "parameters": [
+          {
+            "name": "idBreed",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags": ["Breed"],
+          "summary": "Get all breeds of type",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/postBreed": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Breed"
+            }
+          }
+        ],
+        "post": {
+          "summary": "Create type with given ID",
+          "tags": [
+            "Breed"
+          ],
+          "responses": {
+            "200": {
+              "description": "Type is updated"
+            }
+          }
+        }
+    },  "/putBreed/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Breed"
+          }
+        }
+      ],
+      "put": {
+        "summary": "Update breed with given ID",
+        "tags": [
+          "Breed"
+        ],
+        "responses": {
+          "200": {
+            "description": "Breed is updated"
+          }
+        }
+      }
+  },
+      "/deleteBreed/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of breed that we want to find",
+            "type": "integer"
+          }
+        ],
+        "delete": {
+          "summary": "Delete breed with given ID",
+          "tags": [
+            "Breed"
+          ],
+          "responses": {
+            "200": {
+              "description": "Type is deleted"
+            }
+          }
+        }
+    },
+    "/getUsers": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/getUsersWithFilters/{idUser}/{idBreed}/{minage}/{maxage}/{active}/{idCity}/{idCountry}/{priceLevel}": {
+      "parameters": [
+        {
+          "name": "idUser",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "idBreed",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "minage",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "maxage",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "active",
+          "in": "path",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "idCity",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "idCountry",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+        ,
+        {
+          "name": "priceLevel",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": ["User"],
+        "summary": "Get interedted user by id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/getUserPosts/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": ["User"],
+        "summary": "Get user posts by id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/getSimilarUsers/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": ["User"],
+        "summary": "Get similar user by id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/getInterestedUsers/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": ["User"],
+        "summary": "Get interedted user by id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/getNumberOfInterestedUsers/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": ["User"],
+        "summary": "Get interedted user by id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/getIsInterestedInUser/{idUser1}/{idUser2}": {
+      "parameters": [
+        {
+          "name": "idUser1",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "idUser2",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": ["User"],
+        "summary": "Get interedted user by id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/login": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/User"
+          }
+        }
+      ],
+      "post": {
+        "tags": ["User"],
+        "summary": "Get user with given id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/postUser": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/User"
+          }
+        }
+      
+      ],
+      "post": {
+        "summary": "Create user with given ID",
+        "tags": ["User"],
+        "responses": {
+          "200": {
+            "description": "User is created"
+          }
+        }
+      }
+    },
+    "/InterestedInUser/{idUser1}/{idUser2}": {
+      "parameters": [
+        {
+          "name": "idUser1",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "idUser2",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "post": {
+        "summary": "Create relationship interested between given ID",
+        "tags": ["User"],
+        "responses": {
+          "200": {
+            "description": "Create relationship"
+          }
+        }
+      }
+    },
+    "/putUser/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/updateUser"
+          }
+        }
+      ],
+      "put": {
+        "summary": "Update user with given ID",
+        "tags": ["User"],
+        "responses": {
+          "200": {
+            "description": "User is updated"
+          }
+        }
+      }
+    },
+    "/deleteInterestedInUser/{idUser1}/{idUser2}": {
+      "parameters": [
+        {
+          "name": "idUser1",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "idUser2",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "delete": {
+        "summary": "Create relationship interested between given ID",
+        "tags": ["User"],
+        "responses": {
+          "200": {
+            "description": "Create relationship"
+          }
+        }
+      }
+    },
+      "/deleteUser/{id}": {
+        "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "integer"
+        }
+      ],
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": ["User"],
+        "responses": {
+          "200": {
+            "description": "User is deleted"
+          }
+        }
+      }
+    },
+    "/getPost": {
+      "get": {
+        "tags": ["Post"],
+        "summary": "Get all posts in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/getUserPosts/{idUser}": {
+      "parameters": [
+        {
+          "name": "idUser",
+          "in": "path",
+          "required": true,
+          "description": "Get all posts",
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": ["Post"],
+        "summary": "Get all posts",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/postPost": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Post"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Create post with given ID",
+        "tags": ["Post"],
+        "responses": {
+          "200": {
+            "description": "Post is created"
+          }
+        }
+      }
+    },
+    "/putPost/{id}/": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Post"
+          }
+        }
+      ],
+      "put": {
+        "summary": "Update post with given ID",
+        "tags": ["Post"],
+        "responses": {
+          "200": {
+            "description": "Post is updated"
+          }
+        }
+      }
+    },
+    "/deletePost/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of post that we want to find",
+          "type": "integer"
+        }
+      ],
+      "delete": {
+        "summary": "Delete post with given ID",
+        "tags": ["Post"],
+        "responses": {
+          "200": {
+            "description": "Type is deleted"
+          }
+        }
+      }
+    },
+
+    "/getLocationCity": {
+      "get": {
+        "tags": ["LocationCity"],
+        "summary": "Get all cities in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/getLocationCountryCities/{idCountry}": {
+      "parameters": [
+        {
+          "name": "idCountry",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": ["LocationCity"],
+        "summary": "Get all countries in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/postLocationCity": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/LocationCity"
+            }
+          }
+      ],
+      "post": {
+        "summary": "Create city with given ID",
+        "tags": ["LocationCity"],
+        "responses": {
+          "200": {
+            "description": "City is created"
+          }
+        }
+      }
+    },
+    "/putLocationCity/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/LocationCity"
+          }
+        }
+      ],
+      "put": {
+        "summary": "Update city with given ID",
+        "tags": ["LocationCity"],
+        "responses": {
+          "200": {
+            "description": "City is updated"
+          }
+        }
+      }
+    },
+    "/deleteLocationCity/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of city that we want to find",
+          "type": "integer"
+        }
+      ],
+      "delete": {
+        "summary": "Delete city with given ID",
+        "tags": ["LocationCity"],
+        "responses": {
+          "200": {
+            "description": "City is deleted"
+          }
+        }
+      }
+    },
+    "/getLocationCountry": {
+      "get": {
+        "tags": ["LocationCountry"],
+        "summary": "Get all countries in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/postLocationCountry": {
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/LocationCountry"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Create country with given ID",
+        "tags": ["LocationCountry"],
+        "responses": {
+          "200": {
+            "description": "Country is created"
+          }
+        }
+      }
+    },
+    "/putLocationCountry/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/LocationCountry"
+          }
+        }
+      ],
+      "put": {
+        "summary": "Update country with given ID",
+        "tags": ["LocationCountry"],
+        "responses": {
+          "200": {
+            "description": "Country is updated"
+          }
+        }
+      }
+    },
+    "/deleteLocationCountry/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of country that we want to find",
+          "type": "integer"
+        }
+      ],
+      "delete": {
+        "summary": "Delete country with given ID",
+        "tags": ["LocationCountry"],
+        "responses": {
+          "200": {
+            "description": "Country is deleted"
+          }
+        }
+      }
+    }
+
+      },
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "definitions": {
+      "Type": {
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "updateType": {
+        "required": [
+          "name"
+        ],
+          "name": {
+            "type": "string"
+          }
+        },
+        "Breed": {
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "idType": {
+              "type": "integer"
+            }
+          }
+        },
+        "Chat": {
+          "required": [
+            "idUser1",
+            "idUser2"
+          ],
+          "properties": {
+            "chatid": {
+              "type": "string"
+            },
+            "idUser1": {
+              "type": "string"
+            },
+            "idUser2": {
+              "type": "string"
+            },
+            "user1name": {
+              "type": "string"
+            },
+            "user2name": {
+              "type": "string"
+            },
+            "user1photo": {
+              "type": "string"
+            },
+            "user2photo": {
+              "type": "string"
+            }
+          }
+        },
+        "Message": {
+          "required": [
+            "messageid"
+          ],
+          "properties": {
+            "messageid": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "chatid": {
+              "type": "string"
+            }
+          }
+        },
+        "updateBreed": {
+          "required": [
+            "name"
+          ],
+            "name": {
+              "type": "string"
+            }
+          },
+            "updateLocationCountry": {
+              "required": [
+                "name"
+              ],
+                "name": {
+                  "type": "string"
+                }
+              },
+              "LocationCity": {
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "idCountry": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "updateLocationsCity": {
+                "required": [
+                  "name"
+                ],
+                  "name": {
+                    "type": "string"
+                  }
+                },
+              "User": {
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "userType": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "age": {
+                    "type": "integer"
+                  },
+                  "pedigreUrl": {
+                    "type": "string"
+                  },
+                  "profilePictureUrl": {
+                    "type": "string"
+                  },
+                  "bio": {
+                    "type": "string"
+                  },
+                  "priceLevel": {
+                    "type": "integer"
+                  },
+                  "active": {
+                    "type": "boolean"
+                  },
+                  "idBreed": {
+                    "type": "integer"
+                  },
+                  "idCity": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "updateUser": {
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                    "userType": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "age": {
+                      "type": "integer"
+                    },
+                    "pedigreUrl": {
+                      "type": "string"
+                    },
+                    "profilePictureUrl": {
+                      "type": "string"
+                    },
+                    "bio": {
+                      "type": "string"
+                    },
+                    "priceLevel": {
+                      "type": "integer"
+                    },
+                    "active": {
+                      "type": "boolean"
+                    },
+                    "idCity": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "Post": {
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "date": {
+                      "type": "string"
+                    },
+                    "imageURL": {
+                      "type": "string"
+                    },
+                    "idUser": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "updatePost": {
+                  "required": [
+                    "name"
+                  ],
+                  "date": {
+                    "type": "string"
+                  },
+                  "imageURL": {
+                    "type": "string"
+                  }
+                }
+
+
+      },
+      "Types": {
+        "type": "array",
+        "$ref": "#/definitions/Type"
+      },
+      "Breeds": {
+        "type": "array",
+        "$ref": "#/definitions/Breed"
+      },
+      "LocationsCountry": {
+        "type": "array",
+        "$ref": "#/definitions/LocationCountry"
+      },
+      "LocationsCity": {
+        "type": "array",
+        "$ref": "#/definitions/LocationCity"
+      },
+      "User": {
+        "type": "array",
+        "$ref": "#/definitions/User"
+      },
+      "updateUser": {
+        "type": "array",
+        "$ref": "#/definitions/updateUser"
+      },
+      "Post": {
+        "type": "array",
+        "$ref": "#/definitions/Post"
+      },
+      "Chat": {
+        "type": "array",
+        "$ref": "#/definitions/Chat"
+      },
+      "Message": {
+        "type": "array",
+        "$ref": "#/definitions/Message"
+      }
+
+  }
+  

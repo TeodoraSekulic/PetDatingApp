@@ -1,0 +1,10 @@
+body {background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(237,228,212,0.3561799719887955) 52%, rgba(221,197,150,1) 100%);
+  background-size: contain;
+}
+
+.glavniBox {
+  margin-top: 1;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
