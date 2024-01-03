@@ -5,13 +5,10 @@ import swaggerDocument from "./swagger.json" assert { type: "json" };
 import logger from "morgan";
 import bodyParser from "body-parser";
 import pg from "pg";
-// import io from "socket.io"
 import redis from "socket.io-redis";
 import Redis from "redis";
-// import { Server } from "socket.io";
 import { Server } from "socket.io";
-// import { createServer } from "http";
-// import socketio from 'socket.io';
+
 //postgres connect
 const pool = new pg.Pool({
   user: "postgres",
@@ -38,9 +35,7 @@ const port = 3001;
 const server = app.listen(port, () =>
   console.log(`Example app listening on port ${port}!`)
 );
-// const server = createServer(app);
-// // const socketio = new Server(server);
-// const io = socketio(server);
+
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:3000",
@@ -49,10 +44,12 @@ const io = new Server(server, {
 });
 
 io.adapter(redis({ host: "localhost", port: 6379 }));
+
 app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// //support parsing of application/json type post data
+// support parsing of application/json type post data
 app.use(logger("dev"));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
